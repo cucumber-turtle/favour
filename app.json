@@ -2,6 +2,7 @@
   "expo": {
     "name": "favour",
     "slug": "favour",
+    "owner": "cucumber-turtle",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
