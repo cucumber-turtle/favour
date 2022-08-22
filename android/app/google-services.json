@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "202917236551",
+    "project_id": "favour-ed17d",
+    "storage_bucket": "favour-ed17d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:202917236551:android:fe55fb4189bc66593c0662",
+        "android_client_info": {
+          "package_name": "com.cucumberturtle.favour"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "202917236551-8bhr77m85u5vnqj3s7cd69amcu8j49a1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtnXjp3FG_EGTCa8GcMDLSi5_G0bkT8VM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "202917236551-8bhr77m85u5vnqj3s7cd69amcu8j49a1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
