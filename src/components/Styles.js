@@ -14,6 +14,10 @@ const Styles = StyleSheet.create({
       borderRadius: 10,
       padding: 10,
     },
+  tinyLogo: {
+      width: 280,
+      height: 80,
+    },
 });
 
 export default Styles

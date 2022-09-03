@@ -1,9 +1,7 @@
 import React, {useState} from 'react';
-import { View, Text, TextInput, Button } from 'react-native';
+import { View, Text, TextInput, Button, Image } from 'react-native';
 import Styles from '../components/Styles';
 import AppInit, {AuthContext} from '../AppInit';
-
-// immediately authenticate using firebase, dont save password
 
 const SignInScreen = () => {
     // Hooks for temporarily storing username and password to be processed
@@ -13,6 +11,10 @@ const SignInScreen = () => {
 
     return (
     <View style={Styles.container}>
+          <Image
+            style={Styles.tinyLogo}
+            source={require("../../assets/FAVour.png")}
+            />
           <Text>Enter your login details!</Text>
           <TextInput
             style={Styles.input}
