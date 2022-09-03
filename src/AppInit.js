@@ -61,18 +61,17 @@ export default function AppInit () {
 
             try {
               userToken = await SecureStore.getItemAsync('userToken');
+              if (userToken) {
+                // After restoring token validate it in firebase
+                verifyIdToken(userToken.getIdToken())
+                  .then(function(decodedToken) {
+                      var uid = decodedToken.uid;
+                      dispatch({ type: 'RESTORE_TOKEN', token: userToken });
+                    })
+              }
             } catch (e) {
               // Restoring token failed
             }
-
-            // After restoring token validate it in firebase
-            verifyIdToken(userToken.getIdToken())
-            .then(function(decodedToken) {
-                var uid = decodedToken.uid;
-                dispatch({ type: 'RESTORE_TOKEN', token: userToken });
-              }).catch(function(error) {
-                // OOPS, an error...
-              });
           };
 
           bootstrapAsync();
