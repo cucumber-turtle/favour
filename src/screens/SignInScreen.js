@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
 import { View, Text, TextInput, Button, Image } from 'react-native';
 import Styles from '../components/Styles';
-import AppInit, {AuthContext} from '../AppInit';
+import AppInit, {useAuthContext} from '../AppInit';
 
 const SignInScreen = () => {
     // Hooks for temporarily storing username and password to be processed
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const { isAuthenticated, signIn, signOut, signUp } = React.useContext(AuthContext);
+    const { isAuthenticated, signIn, signOut, signUp } = useAuthContext
 
     return (
     <View style={Styles.container}>

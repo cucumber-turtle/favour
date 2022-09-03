@@ -21,7 +21,7 @@ function authenticate (email, password) {
 // Authentication flow referenced from: https://reactnavigation.org/docs/auth-flow/
 
 // AuthContext to expose needed methods
-export const AuthContext = React.createContext('');
+const AuthContext = React.createContext('');
 
 export default function AppInit () {
        const [state, dispatch] = React.useReducer(
@@ -94,4 +94,8 @@ export default function AppInit () {
        );
 
        return authContext;
+}
+
+export function useAuthContext () {
+    return React.useContext(AuthContext);
 }
