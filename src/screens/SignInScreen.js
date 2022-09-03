@@ -1,6 +1,11 @@
 import React from 'react';
 import { View, Text, TextInput, StatusBar } from 'react-native';
 import Styles from '../components/Styles'
+import { getAuth, signInWithCustomToken } from "firebase/auth";
+
+// usestate hook for saving username
+// immediately authenticate using firebase, dont save password
+// get authentication token from firebase and save to usertoken
 
 const SignInScreen = () => {
     return (
