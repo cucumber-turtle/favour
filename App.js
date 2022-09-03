@@ -1,5 +1,4 @@
-import { StatusBar } from 'expo-status-bar';
-import { Text, View, TextInput } from 'react-native';
+import { Text, View, TextInput, StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
@@ -93,10 +92,17 @@ export default function App({ navigation }) {
 //    }
 
     return (
+        <>
+        <StatusBar barStyle = "dark-content" hidden = {false}/>
         <SignInScreen style = {Styles.container} />
+        </>
 //            <NavigationContainer>
 //                <Tab.Navigator>
-//                    <Tab.Screen name="Home" component={HomeScreen} />
+//                      {state.userToken == null ? (
+//                        <Tab.Screen name="Sign In" component={SignInScreen} />
+//                      ) : (
+//                        <Tab.Screen name="Home Browse" component={HomeBrowseScreen} />
+//                      )}
 //                </Tab.Navigator>
 //            </NavigationContainer>
     );
