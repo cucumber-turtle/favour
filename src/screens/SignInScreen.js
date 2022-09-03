@@ -1,18 +1,33 @@
-import React from 'react';
-import { View, Text, TextInput, StatusBar } from 'react-native';
-import Styles from '../components/Styles'
-import { getAuth, signInWithCustomToken } from "firebase/auth";
+import React, {useState} from 'react';
+import { View, Text, TextInput, Button } from 'react-native';
+import Styles from '../components/Styles';
+import AppInit, {AuthContext} from '../AppInit';
 
-// usestate hook for saving username
 // immediately authenticate using firebase, dont save password
-// get authentication token from firebase and save to usertoken
 
 const SignInScreen = () => {
+    // Hooks for temporarily storing username and password to be processed
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const { isAuthenticated, signIn, signOut, signUp } = React.useContext(AuthContext);
+
     return (
     <View style={Styles.container}>
-          <Text>Open up App.js to start working on your app!</Text>
-          <TextInput style={Styles.input} />
-          <StatusBar style="auto" />
+          <Text>Enter your login details!</Text>
+          <TextInput
+            style={Styles.input}
+            placeholder="Username"
+            value={username}
+            onChangeText={setUsername}
+            />
+          <TextInput
+            style={Styles.input}
+            placeholder="Password"
+            value={password}
+            onChangeText={setPassword}
+            secureTextEntry
+            />
+          <Button title="Sign in" onPress={() => signIn} />
         </View>
     )
 }
