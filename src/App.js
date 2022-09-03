@@ -3,18 +3,16 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import AppInit from './AppInit';
-
 import SignInScreen from './screens/SignInScreen';
 import Styles from './components/Styles';
 
 export default function App({ navigation }) {
-
+    // Loading any stored tokens
+    AppInit();
 //    if (state.isLoading) {
 //      // We haven't finished checking for the token yet
 //      return <SplashScreen />;
 //    }
-
-    AppInit();
 
     return (
         <>
