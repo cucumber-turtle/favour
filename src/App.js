@@ -3,7 +3,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import firebase from '@react-native-firebase/app';
-import * as config from '../android/app/google-services';
 import { getAuth } from "firebase/auth";
 
 import AppInit from './AppInit';
@@ -11,22 +10,38 @@ import SignInScreen from './screens/SignInScreen';
 import HomeBrowseScreen from './screens/HomeBrowseScreen';
 import Styles from './components/Styles';
 
+const config = {
+        clientId: "202917236551-8bhr77m85u5vnqj3s7cd69amcu8j49a1.apps.googleusercontent.com",
+        appId: "1:202917236551:android:fe55fb4189bc66593c0662",
+        apiKey: "AIzaSyAtnXjp3FG_EGTCa8GcMDLSi5_G0bkT8VM",
+        databaseURL: "",
+        storageBucket: "favour-ed17d.appspot.com",
+        messagingSenderId: "202917236551",
+        projectId: "favour-ed17d",
+        persistence: true,
+    }
+
 export default function App({ navigation }) {
     let auth;
     let state;
-    const firebaseApp = firebase.initializeApp(config)
-        .then((firebaseApp) => {
-            auth = getAuth(firebaseApp);
-            state = AppInit();
-        })
-        .catch((error) => console.log(error.message));
+    const firebaseApp = firebase.apps.length ? firebase.app() : (
+        firebase.initializeApp(config)
+            .then((firebaseApp) => {
+                auth = getAuth(firebaseApp);
+                state = AppInit();
+            })
+            .catch((error) => console.log("Error! "+error.message))
+        );
 
-    // Loading any stored tokens
-
-//    if (state.isLoading) {
-//      // We haven't finished checking for the token yet
-//      return <SplashScreen />;
-//    }
+    if (!state) {
+        // Empty screen? No valid firebase authentication
+        // App basically cannot work
+        return (
+        <>
+            <StatusBar barStyle = "dark-content" hidden = {false}/>
+        </>
+        );
+    }
 
     return (
         <>
