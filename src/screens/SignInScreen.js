@@ -1,13 +1,12 @@
 import React, {useState} from 'react';
 import { View, Text, TextInput, Button, Image } from 'react-native';
 import Styles from '../components/Styles';
-import AppInit, {useAuthContext} from '../AppInit';
+import AppInit, {authenticate} from '../AppInit';
 
 const SignInScreen = () => {
     // Hooks for temporarily storing username and password to be processed
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const { signIn } = useAuthContext;
 
     return (
     <View style={Styles.container}>
@@ -29,7 +28,7 @@ const SignInScreen = () => {
             onChangeText={setPassword}
             secureTextEntry
             />
-          <Button title="Sign in" onPress={() => signIn.Provider.signIn(username, password)} />
+          <Button title="Sign in" onPress={() => authenticate(username, password)} />
         </View>
     )
 }

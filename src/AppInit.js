@@ -1,16 +1,15 @@
 import * as React from 'react';
 import * as SecureStore from 'expo-secure-store';
+import firebase from '@react-native-firebase/app';
 import { getAuth, signInWithCustomToken, signInWithEmailAndPassword, verifyIdToken } from "firebase/auth";
 import { Alert } from "react-native";
-
-import SignInScreen from './screens/SignInScreen';
-import HomeBrowseScreen from './screens/HomeBrowseScreen';
-import Styles from './components/Styles';
+import * as config from '../android/app/google-services';
 
 // get authentication token from firebase and save to usertoken
-function authenticate (email, password) {
+export function authenticate (email, password) {
     // Authenticate using firebase and get token
-    const auth = getAuth();
+    const firebaseApp = firebase.initializeApp(config);
+    const auth = getAuth(firebaseApp);
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
@@ -48,9 +47,6 @@ function authenticate (email, password) {
 }
 
 // Authentication flow referenced from: https://reactnavigation.org/docs/auth-flow/
-
-// AuthContext to expose needed methods
-const AuthContext = React.createContext('');
 
 export default function AppInit () {
        const [state, dispatch] = React.useReducer(
@@ -106,36 +102,5 @@ export default function AppInit () {
           bootstrapAsync();
             }, []);
 
-       // usememo to keep expensive functions from needlessly running
-       const authContext = React.useMemo(
-        () => ({
-           signIn: async (name, pass) => {
-               const signToken = authenticate(name, pass);
-               dispatch({type: 'SIGN_IN', token: signToken});
-           },
-           signOut: () => {
-               dispatch({type: 'SIGN_OUT'});
-           },
-           signUp: () => {
-               const signToken = authenticate(name, pass);
-               dispatch({type: 'SIGN_IN', token: signToken});
-           }
-        }), []
-       );
-
-       return (
-           <AuthContext.Provider value={authContext}>
-             <>
-               {state.userToken == null ? (
-                 <SignInScreen style = {Styles.container} />
-               ) : (
-                 <HomeBrowseScreen style = {Styles.container} />
-               )}
-             </>
-           </AuthContext.Provider>
-         );
-}
-
-export function useAuthContext () {
-    return React.useContext(AuthContext);
+       return state;
 }
