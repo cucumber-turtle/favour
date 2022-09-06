@@ -28,7 +28,7 @@ const SignInScreen = () => {
             onChangeText={setPassword}
             secureTextEntry
             />
-          <Button title="Sign in" onPress={() => authenticate(username, password)} />
+          <Button title="Sign in" onPress={() => authenticate(this.props.firebaseAuth, username, password)} />
         </View>
     )
 }
