@@ -7,7 +7,7 @@ const SignInScreen = () => {
     // Hooks for temporarily storing username and password to be processed
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const { isAuthenticated, signIn, signOut, signUp } = useAuthContext
+    const { signIn } = useAuthContext;
 
     return (
     <View style={Styles.container}>
@@ -29,7 +29,7 @@ const SignInScreen = () => {
             onChangeText={setPassword}
             secureTextEntry
             />
-          <Button title="Sign in" onPress={() => signIn} />
+          <Button title="Sign in" onPress={() => signIn.Provider.signIn(username, password)} />
         </View>
     )
 }

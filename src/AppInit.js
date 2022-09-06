@@ -1,6 +1,11 @@
 import * as React from 'react';
 import * as SecureStore from 'expo-secure-store';
 import { getAuth, signInWithCustomToken, signInWithEmailAndPassword, verifyIdToken } from "firebase/auth";
+import { Alert } from "react-native";
+
+import SignInScreen from './screens/SignInScreen';
+import HomeBrowseScreen from './screens/HomeBrowseScreen';
+import Styles from './components/Styles';
 
 // get authentication token from firebase and save to usertoken
 function authenticate (email, password) {
@@ -10,11 +15,35 @@ function authenticate (email, password) {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
+        Alert.alert(
+              "Alert Title",
+              "My Alert Msg",
+              [
+                {
+                  text: "Cancel",
+                  onPress: () => console.log("Cancel Pressed"),
+                  style: "cancel"
+                },
+                { text: "OK", onPress: () => console.log("OK Pressed") }
+              ]
+              );
         return user;
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        Alert.alert(
+                      "oops",
+                      "I guess authentication doesnt work",
+                      [
+                        {
+                          text: "Cancel",
+                          onPress: () => console.log("Cancel Pressed"),
+                          style: "cancel"
+                        },
+                        { text: "OK", onPress: () => console.log("OK Pressed") }
+                      ]
+                      );
       });
 }
 
@@ -80,20 +109,31 @@ export default function AppInit () {
        // usememo to keep expensive functions from needlessly running
        const authContext = React.useMemo(
         () => ({
-           isAuthenticated: false,
            signIn: async (name, pass) => {
                const signToken = authenticate(name, pass);
                dispatch({type: 'SIGN_IN', token: signToken});
            },
-           signOut: () => dispatch({type: 'SIGN_OUT'}),
-           signUp: async (name, pass) => {
+           signOut: () => {
+               dispatch({type: 'SIGN_OUT'});
+           },
+           signUp: () => {
                const signToken = authenticate(name, pass);
                dispatch({type: 'SIGN_IN', token: signToken});
            }
         }), []
        );
 
-       return authContext;
+       return (
+           <AuthContext.Provider value={authContext}>
+             <>
+               {state.userToken == null ? (
+                 <SignInScreen style = {Styles.container} />
+               ) : (
+                 <HomeBrowseScreen style = {Styles.container} />
+               )}
+             </>
+           </AuthContext.Provider>
+         );
 }
 
 export function useAuthContext () {
