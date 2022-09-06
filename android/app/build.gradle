@@ -135,6 +135,13 @@ def reactNativeArchitectures() {
     return value ? value.split(",") : ["armeabi-v7a", "x86", "x86_64", "arm64-v8a"]
 }
 
+plugins {
+    id 'com.android.application'
+
+    // Add the Google services Gradle plugin
+    id 'com.google.gms.google-services'
+}
+
 android {
     ndkVersion rootProject.ext.ndkVersion
 
@@ -283,13 +290,6 @@ android {
             android.packagingOptions[prop] += it
         }
     }
-}
-
-plugins {
-    id 'com.android.application'
-
-    // Add the Google services Gradle plugin
-    id 'com.google.gms.google-services'
 }
 
 dependencies {
