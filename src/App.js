@@ -3,7 +3,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import firebase from '@react-native-firebase/app';
-import { getAuth } from "firebase/auth";
+//import { getAuth } from "firebase/auth";
+import auth from '@react-native-firebase/auth';
 
 import AppInit from './AppInit';
 import SignInScreen from './screens/SignInScreen';
@@ -22,16 +23,37 @@ const config = {
     }
 
 export default function App({ navigation }) {
-    let auth;
+    //let auth;
     let state;
-    const firebaseApp = firebase.apps.length ? firebase.app() : (
-        firebase.initializeApp(config)
-            .then((firebaseApp) => {
-                auth = getAuth(firebaseApp);
-                state = AppInit();
-            })
-            .catch((error) => console.log("Error! "+error.message))
-        );
+    let firebaseApp;
+        if (firebase.apps.length) {
+            firebaseApp = firebase.app();
+//            auth = getAuth(firebaseApp);
+//            state = AppInit();
+        } else {
+            firebaseApp = firebase.initializeApp(config)
+                .then((firebaseApp) => {
+                    auth = getAuth(firebaseApp);
+                    state = AppInit();
+                })
+                .catch((error) => console.log("Error! "+error.message));
+        }
+        auth()
+          .signInWithEmailAndPassword('test', 'test')
+          .then(() => {
+            console.log('User signed in!');
+          })
+          .catch(error => {
+            if (error.code === 'auth/email-already-in-use') {
+              console.log('That email address is already in use!');
+            }
+
+            if (error.code === 'auth/invalid-email') {
+              console.log('That email address is invalid!');
+            }
+
+            console.error(error);
+          });
 
     if (!state) {
         // Empty screen? No valid firebase authentication
