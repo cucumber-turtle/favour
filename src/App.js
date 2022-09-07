@@ -11,6 +11,8 @@ import SignInScreen from './screens/SignInScreen';
 import HomeBrowseScreen from './screens/HomeBrowseScreen';
 import Styles from './components/Styles';
 
+const Tab = createBottomTabNavigator();
+
 export default function App({ navigation }) {
     const [initializing, setInitializing] = useState(true);
     const [user, setUser] = useState();
@@ -28,23 +30,16 @@ export default function App({ navigation }) {
 
     return (
         <>
-        <StatusBar barStyle = "dark-content" hidden = {false}/> // Visible status bar
-        <>
-            {user ? (
-                <HomeBrowseScreen style = {Styles.container} />
-            ) : (
-                <SignInScreen style = {Styles.container} />
-            ) }
-        </>
-        </>
-            );
-//        <NavigationContainer>
-//            <Navigator>
-//                  {isAuthenticated ? (
-//                    <Screen name="Home Browse" component={HomeBrowseScreen} />
-//                  ) : (
-//                    <Screen name="Sign In" component={SignInScreen} />
-//                  )}
-//            </Navigator>
-//        </NavigationContainer>
+            <StatusBar barStyle = "dark-content" hidden = {false}/>
+            <NavigationContainer>
+                <Tab.Navigator>
+                  {user ? (
+                    <Tab.Screen name="Home" component={HomeBrowseScreen}/>
+                  ) : (
+                    <Tab.Screen name="Home" component={SignInScreen}/>
+                  )}
+                </Tab.Navigator>
+            </NavigationContainer>
+            </>
+        );
 }
