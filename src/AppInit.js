@@ -1,49 +1,29 @@
 import * as React from 'react';
 import * as SecureStore from 'expo-secure-store';
-import firebase from '@react-native-firebase/app';
-import { getAuth, signInWithCustomToken, signInWithEmailAndPassword, verifyIdToken } from "firebase/auth";
+
+import auth from '@react-native-firebase/auth';
+import { signInWithCustomToken, signInWithEmailAndPassword, verifyIdToken } from "firebase/auth";
 import { Alert } from "react-native";
-import * as config from '../android/app/google-services';
 
 // get authentication token from firebase and save to usertoken
 export function authenticate (email, password) {
     // Authenticate using firebase and get token
-    const firebaseApp = firebase.initializeApp(config);
-    const auth = getAuth(firebaseApp);
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        Alert.alert(
-              "Alert Title",
-              "My Alert Msg",
-              [
-                {
-                  text: "Cancel",
-                  onPress: () => console.log("Cancel Pressed"),
-                  style: "cancel"
-                },
-                { text: "OK", onPress: () => console.log("OK Pressed") }
-              ]
-              );
-        return user;
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        Alert.alert(
-                      "oops",
-                      "I guess authentication doesnt work",
-                      [
-                        {
-                          text: "Cancel",
-                          onPress: () => console.log("Cancel Pressed"),
-                          style: "cancel"
-                        },
-                        { text: "OK", onPress: () => console.log("OK Pressed") }
-                      ]
-                      );
-      });
+    auth()
+          .signInWithEmailAndPassword(email, password)
+          .then(() => {
+            console.log('User signed in!');
+          })
+          .catch(error => {
+            if (error.code === 'auth/email-already-in-use') {
+              console.log('That email address is already in use!');
+            }
+
+            if (error.code === 'auth/invalid-email') {
+              console.log('That email address is invalid!');
+            }
+
+            console.error(error);
+          });
 }
 
 // Authentication flow referenced from: https://reactnavigation.org/docs/auth-flow/

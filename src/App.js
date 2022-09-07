@@ -1,9 +1,9 @@
+import React, { useState, useEffect } from 'react';
 import { Text, View, TextInput, StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import firebase from '@react-native-firebase/app';
-//import { getAuth } from "firebase/auth";
 import auth from '@react-native-firebase/auth';
 
 import AppInit from './AppInit';
@@ -23,56 +23,36 @@ const config = {
     }
 
 export default function App({ navigation }) {
-    //let auth;
-    let state;
     let firebaseApp;
         if (firebase.apps.length) {
             firebaseApp = firebase.app();
-//            auth = getAuth(firebaseApp);
-//            state = AppInit();
         } else {
             firebaseApp = firebase.initializeApp(config)
-                .then((firebaseApp) => {
-                    auth = getAuth(firebaseApp);
-                    state = AppInit();
-                })
                 .catch((error) => console.log("Error! "+error.message));
         }
-        auth()
-          .signInWithEmailAndPassword('test', 'test')
-          .then(() => {
-            console.log('User signed in!');
-          })
-          .catch(error => {
-            if (error.code === 'auth/email-already-in-use') {
-              console.log('That email address is already in use!');
-            }
 
-            if (error.code === 'auth/invalid-email') {
-              console.log('That email address is invalid!');
-            }
+    const [initializing, setInitializing] = useState(true);
+    const [user, setUser] = useState();
 
-            console.error(error);
-          });
-
-    if (!state) {
-        // Empty screen? No valid firebase authentication
-        // App basically cannot work
-        return (
-        <>
-            <StatusBar barStyle = "dark-content" hidden = {false}/>
-        </>
-        );
+    // Handle user state changes
+    function onAuthStateChanged(user) {
+        setUser(user);
+        if (initializing) setInitializing(false);
     }
+
+    useEffect(() => {
+        const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+        return subscriber; // unsubscribe on unmount
+    }, []);
 
     return (
         <>
         <StatusBar barStyle = "dark-content" hidden = {false}/>
         <>
-            {state.isSignOut ? (
+            {user ? (
                 <HomeBrowseScreen style = {Styles.container} />
             ) : (
-                <SignInScreen firebaseAuth = {auth} style = {Styles.container} />
+                <SignInScreen style = {Styles.container} />
             ) }
         </>
         </>
