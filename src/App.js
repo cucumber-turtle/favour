@@ -13,7 +13,7 @@ import HomeBrowseScreen from './screens/HomeBrowseScreen';
 import SearchScreen from './screens/SearchScreen';
 import AddEntryScreen from './screens/AddEntryScreen';
 import ProfileScreen from './screens/ProfileScreen';
-import Styles from './components/Styles';
+import Styles, {idleColour, activeColour} from './components/Styles';
 
 export const Tab = createBottomTabNavigator();
 
@@ -54,9 +54,8 @@ export default function App({ navigation }) {
                         // You can return any component that you like here!
                         return <Ionicons name={iconName} size={size} color={color} />;
                       },
-                      // TODO: Change colours
-                      tabBarActiveTintColor: 'tomato',
-                      tabBarInactiveTintColor: 'black',
+                      tabBarActiveTintColor: Styles.activeColour,
+                      tabBarInactiveTintColor: Styles.idleColour,
                     })}
                 >
                   {user ? (

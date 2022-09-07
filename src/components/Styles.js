@@ -1,5 +1,8 @@
 import { StyleSheet } from 'react-native';
 
+const idleColour = "#000000";
+const activeColour = "#4287f5";
+
 const Styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -21,3 +24,4 @@ const Styles = StyleSheet.create({
 });
 
 export default Styles
+export {idleColour, activeColour}
