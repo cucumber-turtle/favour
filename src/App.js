@@ -1,36 +1,17 @@
+/** Library imports */
 import React, { useState, useEffect } from 'react';
 import { Text, View, TextInput, StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
+/** Firebase imports */
 import firebase from '@react-native-firebase/app';
 import auth from '@react-native-firebase/auth';
-
-import AppInit from './AppInit';
+/** Project imports */
 import SignInScreen from './screens/SignInScreen';
 import HomeBrowseScreen from './screens/HomeBrowseScreen';
 import Styles from './components/Styles';
 
-const config = {
-        clientId: "202917236551-8bhr77m85u5vnqj3s7cd69amcu8j49a1.apps.googleusercontent.com",
-        appId: "1:202917236551:android:fe55fb4189bc66593c0662",
-        apiKey: "AIzaSyAtnXjp3FG_EGTCa8GcMDLSi5_G0bkT8VM",
-        databaseURL: "",
-        storageBucket: "favour-ed17d.appspot.com",
-        messagingSenderId: "202917236551",
-        projectId: "favour-ed17d",
-        persistence: true,
-    }
-
 export default function App({ navigation }) {
-    let firebaseApp;
-        if (firebase.apps.length) {
-            firebaseApp = firebase.app();
-        } else {
-            firebaseApp = firebase.initializeApp(config)
-                .catch((error) => console.log("Error! "+error.message));
-        }
-
     const [initializing, setInitializing] = useState(true);
     const [user, setUser] = useState();
 
@@ -42,12 +23,12 @@ export default function App({ navigation }) {
 
     useEffect(() => {
         const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-        return subscriber; // unsubscribe on unmount
+        return subscriber;
     }, []);
 
     return (
         <>
-        <StatusBar barStyle = "dark-content" hidden = {false}/>
+        <StatusBar barStyle = "dark-content" hidden = {false}/> // Visible status bar
         <>
             {user ? (
                 <HomeBrowseScreen style = {Styles.container} />

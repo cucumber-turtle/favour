@@ -1,7 +1,9 @@
+/** Library imports */
 import React, {useState} from 'react';
 import { View, Text, TextInput, Button, Image } from 'react-native';
+/** Project imports */
 import Styles from '../components/Styles';
-import AppInit, {authenticate} from '../AppInit';
+import {authenticate} from '../AppInit';
 
 const SignInScreen = () => {
     // Hooks for temporarily storing username and password to be processed
