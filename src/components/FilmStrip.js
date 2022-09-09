@@ -35,7 +35,6 @@ export default function FilmStrip(allElements) {
                   </Modal>
             <Pressable
             onPress={() => {
-                console.log("ok");
                 setEntry(element);
                 setModalVisible(true);
             }}
