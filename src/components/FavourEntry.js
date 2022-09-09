@@ -1,6 +1,5 @@
 /** Library imports */
-import { Text, View, TextInput, Modal, Pressable, Alert } from 'react-native';
-import React, { useState } from "react";
+import { Text, View, TextInput, Pressable } from 'react-native';
 /** Project imports */
 import Styles from '../components/Styles';
 
@@ -10,37 +9,31 @@ export default function FavourEntry (imagePath, title, description) {
     this.description=description;
 }
 
-function entryOverlay (FavourEntry) {
-    const [modalVisible, setModalVisible] = useState(false);
-    return (
+function EntryOverlay (FavourEntry) {
+    this.modalVisible = false;
+    this.element = (
         <View >
           <Modal
             animationType="slide"
             transparent={true}
-            visible={modalVisible}
-            onRequestClose={() => {
-              Alert.alert("Modal has been closed.");
-              setModalVisible(!modalVisible);
-            }}
+            visible={this.modalVisible}
           >
             <View >
               <View style={Styles.modalView}>
                 <Text>Hello World!</Text>
                 <Pressable
-                  onPress={() => setModalVisible(!modalVisible)}
+                  onPress={() => this.modalVisible = !this.modalVisible}
                 >
                   <Text >Hide Modal</Text>
                 </Pressable>
               </View>
             </View>
           </Modal>
-          <Pressable
-            onPress={() => setModalVisible(true)}
-          >
-            <Text>Show Modal</Text>
-          </Pressable>
         </View>
     );
+    this.changeVisibility = () => {
+        this.modalVisible = !this.modalVisible;
+    }
 }
 
-export {entryOverlay}
+export {EntryOverlay}
