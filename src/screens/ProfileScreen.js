@@ -4,10 +4,11 @@ import { NavigationContainer } from '@react-navigation/native';
 /** Project imports */
 import Styles from '../components/Styles';
 
-const ProfileScreen = () => {
+const ProfileScreen = ({route}) => {
+    const user = route.params.currUser;
     return (
         <>
-            <Text> Profile!! </Text>
+            <Text> {user.email} </Text>
         </>
     );
 }
