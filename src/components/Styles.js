@@ -4,6 +4,17 @@ const idleColour = "#000000";
 const activeColour = "#4287f5";
 
 const Styles = StyleSheet.create({
+  title: {
+    padding: 10,
+    fontSize: 30,
+  },
+  header: {
+    padding: 5,
+    fontSize: 20,
+  },
+  body: {
+    fontSize: 12,
+  },
   container: {
     flex: 1,
     backgroundColor: '#fff',
@@ -29,6 +40,21 @@ const Styles = StyleSheet.create({
       flex: 1,
       backgroundColor: "red",
       paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
+    },
+    modalView: {
+      margin: 20,
+      backgroundColor: "white",
+      borderRadius: 20,
+      padding: 35,
+      alignItems: "center",
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 2
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 4,
+      elevation: 5
     },
 });
 

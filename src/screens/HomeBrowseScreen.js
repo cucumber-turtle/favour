@@ -7,13 +7,22 @@ import { Text, View, TextInput, StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 /** Project imports */
 import FilmStrip from '../components/FilmStrip';
+import FavourEntry, {entryOverlay} from '../components/FavourEntry';
+import Styles from '../components/Styles';
 
 const HomeBrowseScreen = () => {
-    const scroll1 = FilmStrip([0,2]);
+    const hm = new FavourEntry("ok","test title","This is a test description");
+    const scroll1 = FilmStrip([hm]);
+    const scroll2 = scroll1;
+    const overlay = entryOverlay(hm);
     return (
         <>
-            <Text> Home screen :) </Text>
+            {overlay}
+            <Text style={Styles.title}> Browse </Text>
+            <Text style={Styles.header}> New! </Text>
             {scroll1}
+            <Text style={Styles.header}> Nearby </Text>
+            {scroll2}
         </>
     );
 }

@@ -1,8 +1,9 @@
 /** Library imports */
 import React, { useState } from 'react';
 import { Pressable, SafeAreaView, ScrollView, View, Text } from 'react-native';
-
-import Styles from '../components/Styles';
+/** Project imports */
+import FavourEntry, {entryOverlay} from './FavourEntry';
+import Styles from './Styles';
 
 export default function FilmStrip(allElements) {
     const contents = [];
@@ -22,11 +23,7 @@ export default function FilmStrip(allElements) {
                       },
                       Styles.wrapperCustom
                     ]}>
-                    {({ pressed }) => (
-                      <Text>
-                        {pressed ? 'Pressed!' : 'Press Me'}
-                      </Text>
-                    )}
+                    <Text>{element.title}</Text>
             </Pressable>
             </View>
         );
