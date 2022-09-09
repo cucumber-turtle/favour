@@ -21,3 +21,10 @@ export function authenticate (email, password) {
             console.error(error);
           });
 }
+
+/** Function to log out the user */
+export function signOut () {
+    auth()
+      .signOut()
+      .then(() => console.log('User signed out!'));
+}
