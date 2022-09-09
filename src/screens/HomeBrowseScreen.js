@@ -6,12 +6,14 @@
 import { Text, View, TextInput, StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 /** Project imports */
-import Styles from '../components/Styles';
+import FilmStrip from '../components/FilmStrip';
 
 const HomeBrowseScreen = () => {
+    const scroll1 = FilmStrip([0,2]);
     return (
         <>
             <Text> Home screen :) </Text>
+            {scroll1}
         </>
     );
 }

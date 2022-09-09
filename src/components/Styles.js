@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform, StatusBar } from "react-native";
 
 const idleColour = "#000000";
 const activeColour = "#4287f5";
@@ -20,6 +20,15 @@ const Styles = StyleSheet.create({
   tinyLogo: {
       width: 280,
       height: 80,
+    },
+  wrapperCustom: {
+      borderRadius: 8,
+      padding: 5
+    },
+  AndroidSafeArea: {
+      flex: 1,
+      backgroundColor: "red",
+      paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
     },
 });
 
