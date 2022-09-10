@@ -1,5 +1,6 @@
 /** Library imports */
 import { Text, View, TextInput, ScrollView, Button } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 /** Project imports */
 import Styles from '../components/Styles';
 
@@ -9,10 +10,12 @@ const EntryDetailScreen = ({ navigation }) => {
         <View
             style={[Styles.container, {flexDirection: "row"}]}>
             <Text style={Styles.title}>Details</Text>
+            <Icon name="caret-forward" size={40}/>
             <Button
                 title="Location"
                 onPress={() => navigation.navigate('Location')}
                 />
+            <Icon name="caret-forward" size={40}/>
             <Text style={Styles.title}>Confirm</Text>
         </View>
         <ScrollView>
@@ -24,12 +27,14 @@ const EntryDetailScreen = ({ navigation }) => {
             <Text style={Styles.header}>Description</Text>
             <TextInput
                 style={Styles.input}
+                multiline={true}
                 placeholder="Write a detailed description of the volunteering activity"
                 />
             <Text style={Styles.header}>Requirements</Text>
             <TextInput
                 style={Styles.input}
-                placeholder="What volunteers need to have or be able to do?"
+                multiline={true}
+                placeholder="What volunteers need to have or be able to do"
                 />
         </ScrollView>
         </>
