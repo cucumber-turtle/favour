@@ -1,7 +1,25 @@
 /** Library imports */
 import auth from '@react-native-firebase/auth';
 import { signInWithEmailAndPassword } from "firebase/auth";
+import firestore from '@react-native-firebase/firestore';
 import { StyleSheet, Alert } from "react-native";
+
+const entries = firestore().collection("FavourEntries");
+
+export function uploadEntry (entry) {
+    firestore()
+      .collection("FavourEntries")
+      .add({
+        title: entry.title,
+        description: entry.description,
+        image: "assets/images/water.jpg",
+        location: entry.location,
+        requirements: entry.requirements,
+      })
+      .then(() => {
+        console.log("Entry added!");
+      });
+}
 
 export function showAlert (title, message, cancel) {
     Alert.alert(
@@ -30,3 +48,5 @@ export function signOut () {
       .signOut()
       .then(() => console.log('User signed out!'));
 }
+
+export {entries};

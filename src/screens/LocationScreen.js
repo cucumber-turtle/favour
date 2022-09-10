@@ -4,6 +4,7 @@ import React, {useState, useEffect} from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 /** Project imports */
 import Styles from '../components/Styles';
+import {uploadEntry} from '../AppInit'
 
 function confirm_entry (entry) {
     Alert.alert(
@@ -12,7 +13,7 @@ function confirm_entry (entry) {
             + "Title: " + entry.title + "\nDescription: " + entry.description
             + "\nRequirements: " + entry.requirements
             + "\nLocation: " + entry.location,
-        [{ text: "Submit", style: "confirm", },
+        [{ text: "Submit", style: "confirm", onPress: () => {uploadEntry(entry)},},
          {text: "Edit", style: "cancel", }, ],
         {cancelable: true,}
         );
