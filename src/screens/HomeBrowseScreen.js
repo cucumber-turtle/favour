@@ -11,9 +11,9 @@ import FavourEntry from '../components/FavourEntry';
 import Styles from '../components/Styles';
 
 const HomeBrowseScreen = () => {
-    const hm = new FavourEntry("ok","test title","This is a test description","hmm");
+    const hm = new FavourEntry("ok","test title","This is a test description","hmm","ok");
     const scroll1 = FilmStrip([hm]);
-    const scroll2 = FilmStrip([new FavourEntry("h","h","h","h")]);
+    const scroll2 = FilmStrip([new FavourEntry("h","h","h","h","h")]);
     return (
         <>
             <Text style={Styles.title}> Browse </Text>

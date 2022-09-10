@@ -6,7 +6,7 @@ import Styles from '../components/Styles';
 import FavourEntry from '../components/FavourEntry';
 
 const EntryDetailScreen = ({ navigation, route }) => {
-    let new_entry = route.params ? route.params.entry : new FavourEntry("","","","");
+    let new_entry = route.params ? route.params.entry : new FavourEntry("","","","","");
 
     return (
         <>
