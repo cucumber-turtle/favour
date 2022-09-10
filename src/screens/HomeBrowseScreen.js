@@ -8,26 +8,7 @@ import Styles from '../components/Styles';
 import {getEntries} from '../AppInit';
 
 const HomeBrowseScreen = () => {
-    let entries = getEntries();
-    const allEntries = [];
-
-    function convertToFavour (data) {
-        let favour = new FavourEntry("","","","","");
-        favour.title = data.Title;
-        favour.requirements = data.Requirements;
-        favour.image = data.Image;
-        favour.description = data.Description;
-        favour.location = data.Location;
-        return favour;
-    }
-
-    Promise.all(entries.get()).then((querySnapshot) => {
-          querySnapshot.forEach(snapshot => {
-              let data = snapshot.data();
-              let favour = convertToFavour(data);
-              allEntries.push(favour);
-          })
-      });
+    let allEntries= getEntries();
 
     const scroll1 = FilmStrip(allEntries);
     const scroll2 = FilmStrip([new FavourEntry("h","h","h","h","h")]);

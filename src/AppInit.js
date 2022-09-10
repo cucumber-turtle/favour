@@ -1,11 +1,32 @@
 /** Library imports */
 import auth from '@react-native-firebase/auth';
 import { signInWithEmailAndPassword } from "firebase/auth";
-import firestore from '@react-native-firebase/firestore';
-import { StyleSheet, Alert } from "react-native";
+import firestore, { doc, getDoc} from '@react-native-firebase/firestore';
+import { StyleSheet, Alert } from 'react-native';
 
-export function getEntries () {
-    return firestore().collection("FavourEntries");
+function convertToFavour (data) {
+    let favour = new FavourEntry("","","","","");
+    favour.title = data.Title;
+    favour.requirements = data.Requirements;
+    favour.image = data.Image;
+    favour.description = data.Description;
+    favour.location = data.Location;
+    return favour;
+}
+
+export async function getEntries () {
+    let allEntries = [];
+    let entries = firestore().collection("FavourEntries");
+    let doc = await Promise.all(entries.get());
+    let favour;
+    doc.forEach(
+      (snapshot => {
+          let data = snapshot.data();
+          favour = convertToFavour(data);
+          allEntries.push(favour) // TODO: Fix not pushing properly to array
+      }), console.log(favour)
+    );
+    return allEntries;
 }
 
 export function uploadEntry (entry) {
