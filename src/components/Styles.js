@@ -36,15 +36,21 @@ const Styles = StyleSheet.create({
       margin: 20,
     },
   wrapperCustom: {
+      alignItems: "center",
       borderRadius: 8,
-      padding: 5
+      width: 200,
+      height: 180,
+      borderRadius: 1,
+      borderWidth: 1,
+      borderColor: "black",
+      margin: 10,
     },
   AndroidSafeArea: {
       flex: 1,
-      backgroundColor: "red",
+      backgroundColor: "white",
       paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
     },
-    modalView: {
+  modalView: {
       margin: 20,
       backgroundColor: "white",
       borderRadius: 20,
@@ -59,7 +65,7 @@ const Styles = StyleSheet.create({
       shadowRadius: 4,
       elevation: 5
     },
-    submitButton: {
+  submitButton: {
       margin: 10,
     }
 });

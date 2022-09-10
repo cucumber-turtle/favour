@@ -11,7 +11,7 @@ const HomeBrowseScreen = () => {
     let allEntries= getEntries();
 
     const scroll1 = FilmStrip(allEntries);
-    const scroll2 = FilmStrip([new FavourEntry("h","h","h","h","h")]);
+    const scroll2 = FilmStrip([new FavourEntry("h","h","h","h","h"), new FavourEntry("hm","hmm","h","h","h")]);
     return (
         <>
             <Text style={Styles.title}> Browse </Text>

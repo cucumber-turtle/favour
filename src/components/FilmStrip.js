@@ -1,9 +1,9 @@
 /** Library imports */
 import React, { useState } from 'react';
-import { Pressable, SafeAreaView, ScrollView, View, Text, Modal } from 'react-native';
+import { Pressable, SafeAreaView, ScrollView, View, Text, Modal, Image } from 'react-native';
 /** Project imports */
 import FavourEntry from './FavourEntry';
-import Styles from './Styles';
+import Styles, {idleColour, activeColour} from './Styles';
 
 export default function FilmStrip(allElements) {
     const [modalVisible, setModalVisible] = useState(false);
@@ -28,7 +28,7 @@ export default function FilmStrip(allElements) {
                         <Pressable
                           onPress={() => setModalVisible(!modalVisible)}
                         >
-                          <Text>Hide Modal</Text>
+                          <Text>Close</Text>
                         </Pressable>
                       </View>
                     </View>
@@ -46,7 +46,7 @@ export default function FilmStrip(allElements) {
                       },
                       Styles.wrapperCustom
                     ]}>
-                    <Text>{element.title}</Text>
+                    <Image source={{uri: element.image}}/>
             </Pressable>
             </View>
         );
