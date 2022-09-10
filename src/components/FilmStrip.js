@@ -7,7 +7,7 @@ import Styles from './Styles';
 
 export default function FilmStrip(allElements) {
     const [modalVisible, setModalVisible] = useState(false);
-    const [entry, setEntry] = useState(new FavourEntry("","",""));
+    const [entry, setEntry] = useState(new FavourEntry("","","",""));
     const contents = [];
     for (let i = 0; i < allElements.length; i++) {
         let element = allElements[i];

@@ -3,8 +3,11 @@ import { Text, View, TextInput, ScrollView, Button } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 /** Project imports */
 import Styles from '../components/Styles';
+import FavourEntry from '../components/FavourEntry';
 
-const EntryDetailScreen = ({ navigation }) => {
+const EntryDetailScreen = ({ navigation, route }) => {
+    let new_entry = route.params ? route.params.entry : new FavourEntry("","","","");
+
     return (
         <>
         <View
@@ -13,7 +16,7 @@ const EntryDetailScreen = ({ navigation }) => {
             <Icon name="caret-forward" size={40}/>
             <Button
                 title="Location"
-                onPress={() => navigation.navigate('Location')}
+                onPress={() => navigation.navigate('Location', {entry: new_entry})}
                 />
             <Icon name="caret-forward" size={40}/>
             <Text style={Styles.title}>Confirm</Text>
