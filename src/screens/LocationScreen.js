@@ -1,5 +1,6 @@
 /** Library imports */
 import { Alert, Text, View, TextInput, Button, ScrollView } from 'react-native';
+import React, {useState, useEffect} from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 /** Project imports */
 import Styles from '../components/Styles';
@@ -18,14 +19,21 @@ function confirm_entry (entry) {
 }
 
 const LocationScreen = ({ navigation, route }) => {
+    const [location, setLocation] = useState('');
+
     let entry = route.params.entry;
+
+    useEffect(() => {
+        entry.location = location;
+    });
+
     return (
         <>
         <View
             style={[Styles.container, {flexDirection: "row"}]}>
             <Button
                 title="Details"
-                onPress={() => navigation.navigate('Details', {entry: entry})}
+                onPress={() => navigation.navigate("Details", {entry: entry})}
                 />
             <Icon name="caret-forward" size={40}/>
             <Text style={Styles.title}>Location</Text>
@@ -41,8 +49,8 @@ const LocationScreen = ({ navigation, route }) => {
                 style={Styles.input}
                 multiline={true}
                 placeholder="The address the volunteer needs to go to"
-                value={entry.location}
-                onChangeText={text => entry.location = text}
+                value={location}
+                onChangeText={setLocation}
                 />
         </ScrollView>
         </>
