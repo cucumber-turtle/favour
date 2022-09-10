@@ -1,7 +1,3 @@
-// tab navigator for chyron
-// stack navigator for chat page
-// tab navigator (top) for saved/browse pages
-// horizontal scrolling container
 /** Library imports */
 import { Text, View, TextInput, StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
@@ -9,10 +5,31 @@ import { NavigationContainer } from '@react-navigation/native';
 import FilmStrip from '../components/FilmStrip';
 import FavourEntry from '../components/FavourEntry';
 import Styles from '../components/Styles';
+import {getEntries} from '../AppInit';
 
 const HomeBrowseScreen = () => {
-    const hm = new FavourEntry("ok","test title","This is a test description","hmm","ok");
-    const scroll1 = FilmStrip([hm]);
+    let entries = getEntries();
+    const allEntries = [];
+
+    function convertToFavour (data) {
+        let favour = new FavourEntry("","","","","");
+        favour.title = data.Title;
+        favour.requirements = data.Requirements;
+        favour.image = data.Image;
+        favour.description = data.Description;
+        favour.location = data.Location;
+        return favour;
+    }
+
+    Promise.all(entries.get()).then((querySnapshot) => {
+          querySnapshot.forEach(snapshot => {
+              let data = snapshot.data();
+              let favour = convertToFavour(data);
+              allEntries.push(favour);
+          })
+      });
+
+    const scroll1 = FilmStrip(allEntries);
     const scroll2 = FilmStrip([new FavourEntry("h","h","h","h","h")]);
     return (
         <>
