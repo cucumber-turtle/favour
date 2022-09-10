@@ -11,6 +11,7 @@ const Styles = StyleSheet.create({
   header: {
     padding: 5,
     fontSize: 20,
+    margin: 5,
   },
   body: {
     fontSize: 12,
@@ -25,12 +26,14 @@ const Styles = StyleSheet.create({
       borderColor: "gray",
       width: "70%",
       borderWidth: 1,
-      borderRadius: 10,
+      borderRadius: 1,
       padding: 10,
+      margin: 10,
     },
-  tinyLogo: {
+  bigLogo: {
       width: 280,
-      height: 80,
+      height: 85,
+      margin: 20,
     },
   wrapperCustom: {
       borderRadius: 8,
@@ -56,6 +59,9 @@ const Styles = StyleSheet.create({
       shadowRadius: 4,
       elevation: 5
     },
+    submitButton: {
+      margin: 10,
+    }
 });
 
 export default Styles

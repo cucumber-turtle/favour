@@ -1,6 +1,16 @@
 /** Library imports */
 import auth from '@react-native-firebase/auth';
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { StyleSheet, Alert } from "react-native";
+
+export function showAlert (title, message, cancel) {
+    Alert.alert(
+        title,
+        message,
+    [{ text: cancel, style: "cancel", },],
+    {cancelable: true,}
+    );
+}
 
 /** Function to authenticate user with email and password */
 export function authenticate (email, password) {
@@ -10,15 +20,7 @@ export function authenticate (email, password) {
             console.log('User signed in!');
           })
           .catch(error => {
-            if (error.code === 'auth/email-already-in-use') {
-              console.log('That email address is already in use!');
-            }
-
-            if (error.code === 'auth/invalid-email') {
-              console.log('That email address is invalid!');
-            }
-
-            console.error(error);
+            showAlert("Invalid login", "Invalid username or password.", "Cancel");
           });
 }
 

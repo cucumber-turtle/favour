@@ -13,10 +13,10 @@ const SignInScreen = () => {
     return (
     <View style={Styles.container}>
           <Image
-            style={Styles.tinyLogo}
+            style={Styles.bigLogo}
             source={require("../../assets/FAVour.png")}
             />
-          <Text>Enter your login details!</Text>
+          <Text style={Styles.header}>Enter your login details!</Text>
           <TextInput
             style={Styles.input}
             placeholder="Username"
@@ -30,7 +30,10 @@ const SignInScreen = () => {
             onChangeText={setPassword}
             secureTextEntry
             />
-          <Button title="Sign in" onPress={() => authenticate(username, password)} />
+          <Button
+            title="Sign in"
+            onPress={() => (username && password) ? authenticate(username, password) : 0}
+            />
         </View>
     )
 }
