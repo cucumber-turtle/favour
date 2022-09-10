@@ -63,8 +63,7 @@ export default function App({ navigation }) {
                     <Tab.Screen name="Home" component={HomeBrowseScreen}/>
                     <Tab.Screen name="Search" component={SearchScreen}/>
                     <Tab.Screen name="Add Entry" component={AddEntryScreen}/>
-                    <Tab.Screen name="Profile" component={ProfileScreen}
-                        initialParams={{currUser: user}}/>
+                    <Tab.Screen name="Profile" component={ProfileScreen}/>
                     </>
                   ) : (
                     <Tab.Screen name="Sign in" component={SignInScreen}/>

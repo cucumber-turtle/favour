@@ -1,12 +1,13 @@
 /** Library imports */
 import { Text, View, TextInput, StatusBar, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
+import auth from '@react-native-firebase/auth';
 /** Project imports */
 import Styles from '../components/Styles';
 import {signOut} from '../AppInit';
 
-const ProfileScreen = ({route}) => {
-    const user = route.params.currUser;
+const ProfileScreen = () => {
+    const user = auth().currentUser;
     return (
         <>
             <Text> {user.email} </Text>
