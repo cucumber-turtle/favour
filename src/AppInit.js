@@ -1,6 +1,7 @@
 /** Library imports */
 import auth from '@react-native-firebase/auth';
-import { signInWithEmailAndPassword, updateEmail, updateProfile } from "firebase/auth";
+import { signInWithEmailAndPassword, updateEmail, updateProfile,
+    createUserWithEmailAndPassword } from "firebase/auth";
 import firestore, { doc, getDoc } from '@react-native-firebase/firestore';
 import { Alert } from 'react-native';
 /** Project imports */
@@ -61,6 +62,19 @@ export function authenticate (email, password) {
           })
           .catch(error => {
             showAlert("Invalid login", "Invalid username or password.", "Cancel");
+          });
+}
+
+/** Function to create a new user */
+export function signUp (email, password) {
+    auth()
+          .createUserWithEmailAndPassword(email, password)
+          .then(() => {
+            console.log('User created!');
+            authenticate(email, password);
+          })
+          .catch(error => {
+            showAlert("Invalid sign up", error.message, "Cancel");
           });
 }
 
