@@ -1,8 +1,8 @@
 /** Library imports */
 import auth from '@react-native-firebase/auth';
-import { signInWithEmailAndPassword } from "firebase/auth";
-import firestore, { doc, getDoc} from '@react-native-firebase/firestore';
-import { StyleSheet, Alert } from 'react-native';
+import { signInWithEmailAndPassword, updateEmail, updateProfile } from "firebase/auth";
+import firestore, { doc, getDoc } from '@react-native-firebase/firestore';
+import { Alert } from 'react-native';
 /** Project imports */
 import FavourEntry from './components/FavourEntry';
 
@@ -69,4 +69,18 @@ export function signOut () {
     auth()
       .signOut()
       .then(() => console.log('User signed out!'));
+}
+
+/** Function to change user details */
+export function changeProfile(name, email, username, password) {
+    auth()
+        .signInWithEmailAndPassword(username, password)
+        .then(function(userCredential) {
+            userCredential.user.updateEmail(email);
+            userCredential.user.updateProfile({
+                "displayName": name
+              });
+        }).catch(error => {
+          showAlert("Invalid login", "Invalid username or password.", "Cancel");
+        });
 }

@@ -81,6 +81,14 @@ const Styles = StyleSheet.create({
       resizeMode: "contain",
       justifyContent: "flex-end",
     },
+  spaceVertical: {
+      width: 20,
+      height: 20,
+    },
+  spaceHorizontal: {
+      width: 80,
+      height: 20,
+  }
 });
 
 export default Styles

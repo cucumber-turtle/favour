@@ -19,7 +19,7 @@ const SignInScreen = () => {
           <Text style={Styles.header}>Enter your login details!</Text>
           <TextInput
             style={Styles.input}
-            placeholder="Username"
+            placeholder="Email"
             value={username}
             onChangeText={setUsername}
             />
