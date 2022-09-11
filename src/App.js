@@ -8,7 +8,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import firebase from '@react-native-firebase/app';
 import auth from '@react-native-firebase/auth';
 /** Project imports */
-import SignInScreen from './screens/SignInScreen';
+import SignedOutScreen from './screens/SignedOutScreen';
 import HomeBrowseScreen from './screens/HomeBrowseScreen';
 import SearchScreen from './screens/SearchScreen';
 import AddEntryScreen from './screens/AddEntryScreen';
@@ -66,7 +66,7 @@ export default function App({ navigation }) {
                     <Tab.Screen name="Profile" component={ProfileScreen}/>
                     </>
                   ) : (
-                    <Tab.Screen name="Sign in" component={SignInScreen}/>
+                    <Tab.Screen name="Login" component={SignedOutScreen}/>
                   )}
                 </Tab.Navigator>
             </NavigationContainer>

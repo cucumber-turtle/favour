@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import { View, Text, TextInput, Button, Image } from 'react-native';
 /** Project imports */
 import Styles from '../components/Styles';
-import {authenticate} from '../AppInit';
+import {signUp} from '../AppInit';
 
 const SignInScreen = ({ navigation }) => {
     // Hooks for temporarily storing username and password to be processed
@@ -16,7 +16,7 @@ const SignInScreen = ({ navigation }) => {
             style={Styles.bigLogo}
             source={require("../../assets/FAVour.png")}
             />
-          <Text style={Styles.header}>Enter your login details!</Text>
+          <Text style={Styles.header}>Sign up with an email and password!</Text>
           <TextInput
             style={Styles.input}
             placeholder="Email"
@@ -32,12 +32,12 @@ const SignInScreen = ({ navigation }) => {
             />
           <Button
             title="Sign up"
-            onPress={() => navigation.navigate("Sign up")}
+            onPress={() => (username && password) ? signUp(username, password) : 0}
             />
           <View style={Styles.spaceHorizontal}/>
           <Button
             title="Sign in"
-            onPress={() => (username && password) ? authenticate(username, password) : 0}
+            onPress={() => navigation.navigate("Sign in")}
             />
         </View>
     )
