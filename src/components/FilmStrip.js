@@ -35,7 +35,10 @@ export default function FilmStrip(allElements) {
                   >
                     <View style={Styles.centeredView}>
                       <View style={Styles.modalView}>
-                        <Text>{entry.description}</Text>
+                        <Text>{entry.title + "\n"}
+                            {entry.description + "\n"}
+                            {entry.location + "\n"}
+                            {entry.requirements + "\n"}</Text>
                         <Pressable
                           onPress={() => setModalVisible(!modalVisible)}
                         >
