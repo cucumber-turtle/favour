@@ -3,6 +3,8 @@ import auth from '@react-native-firebase/auth';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import firestore, { doc, getDoc} from '@react-native-firebase/firestore';
 import { StyleSheet, Alert } from 'react-native';
+/** Project imports */
+import FavourEntry from './components/FavourEntry';
 
 function convertToFavour (data) {
     let favour = new FavourEntry("","","","","");
@@ -16,16 +18,13 @@ function convertToFavour (data) {
 
 export async function getEntries () {
     let allEntries = [];
-    let entries = firestore().collection("FavourEntries");
-    let doc = await Promise.all(entries.get());
+    let entries = await firestore().collection("FavourEntries").get();
     let favour;
-    doc.forEach(
-      (snapshot => {
-          let data = snapshot.data();
-          favour = convertToFavour(data);
-          allEntries.push(favour) // TODO: Fix not pushing properly to array
-      }), console.log(favour)
-    );
+    entries.forEach((doc) => {
+        favour = convertToFavour(doc.data());
+        allEntries.push(favour);
+    });
+
     return allEntries;
 }
 

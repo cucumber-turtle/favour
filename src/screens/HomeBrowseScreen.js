@@ -1,4 +1,5 @@
 /** Library imports */
+import React, { useState } from 'react';
 import { Text, View, TextInput, StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 /** Project imports */
@@ -8,9 +9,14 @@ import Styles from '../components/Styles';
 import {getEntries} from '../AppInit';
 
 const HomeBrowseScreen = () => {
-    let allEntries= getEntries();
+    const [entries, setEntries] = useState({});
+    getEntries().then(a => setEntries(a)).catch(e => console.log(e));
 
-    const scroll1 = FilmStrip(allEntries);
+    if (!entries) {
+        //loading screen
+    }
+
+    const scroll1 = entries ? FilmStrip(entries) : undefined;
     const scroll2 = FilmStrip([new FavourEntry("h","h","h","h","h"), new FavourEntry("hm","hmm","h","h","h")]);
     return (
         <>
