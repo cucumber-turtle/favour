@@ -16,7 +16,7 @@ const SignInScreen = ({ navigation }) => {
             style={Styles.bigLogo}
             source={require("../../assets/FAVour.png")}
             />
-          <Text style={Styles.header}>Sign up with an email and password!</Text>
+          <Text style={Styles.header1}>Sign up with an email and password!</Text>
           <TextInput
             style={Styles.input}
             placeholder="Email"

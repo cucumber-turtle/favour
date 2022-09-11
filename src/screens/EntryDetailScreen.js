@@ -23,24 +23,24 @@ const EntryDetailScreen = ({ navigation, route }) => {
         <>
         <View
             style={[Styles.container, {flexDirection: "row"}]}>
-            <Text style={Styles.title}>Details</Text>
+            <Text style={Styles.header2}>Details</Text>
             <Icon name="caret-forward" size={40}/>
             <Button
                 title="Location"
                 onPress={() => navigation.navigate('Location', {entry: new_entry})}
                 />
             <Icon name="caret-forward" size={40}/>
-            <Text style={Styles.title}>Confirm</Text>
+            <Text style={Styles.header2}>Confirm</Text>
         </View>
         <ScrollView>
-            <Text style={Styles.header}>Title</Text>
+            <Text style={Styles.header1}>Title</Text>
             <TextInput
                 style={Styles.input}
                 placeholder="Title of volunteering opportunity"
                 value={title}
                 onChangeText={setTitle}
                 />
-            <Text style={Styles.header}>Description</Text>
+            <Text style={Styles.header1}>Description</Text>
             <TextInput
                 style={Styles.input}
                 multiline={true}
@@ -48,7 +48,7 @@ const EntryDetailScreen = ({ navigation, route }) => {
                 value={desc}
                 onChangeText={setDesc}
                 />
-            <Text style={Styles.header}>Requirements</Text>
+            <Text style={Styles.header1}>Requirements</Text>
             <TextInput
                 style={Styles.input}
                 multiline={true}

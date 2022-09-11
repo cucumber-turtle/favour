@@ -6,15 +6,20 @@ const activeColour = "#4287f5";
 const Styles = StyleSheet.create({
   title: {
     padding: 10,
-    fontSize: 30,
+    fontSize: 35,
   },
-  header: {
+  header1: {
     padding: 5,
     fontSize: 20,
     margin: 5,
   },
+  header2: {
+    padding: 5,
+    fontSize: 30,
+    margin: 5,
+  },
   body: {
-    fontSize: 12,
+    fontSize: 20,
   },
   caption: {
     color: "white",

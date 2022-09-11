@@ -10,7 +10,7 @@ import auth from '@react-native-firebase/auth';
 /** Project imports */
 import SignedOutScreen from './screens/SignedOutScreen';
 import HomeBrowseScreen from './screens/HomeBrowseScreen';
-import SearchScreen from './screens/SearchScreen';
+import GuideScreen from './screens/GuideScreen';
 import AddEntryScreen from './screens/AddEntryScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import Styles, {idleColour, activeColour} from './components/Styles';
@@ -43,8 +43,8 @@ export default function App({ navigation }) {
 
                         if (route.name === "Home") {
                             iconName = "home";
-                        } else if (route.name === "Search") {
-                            iconName = "search";
+                        } else if (route.name === "Guide") {
+                            iconName = "book-sharp";
                         } else if (route.name === "Add Entry") {
                             iconName = "add-circle-sharp";
                         } else if (route.name === "Profile") {
@@ -61,7 +61,7 @@ export default function App({ navigation }) {
                   {user ? (
                     <>
                     <Tab.Screen name="Home" component={HomeBrowseScreen}/>
-                    <Tab.Screen name="Search" component={SearchScreen}/>
+                    <Tab.Screen name="Guide" component={GuideScreen}/>
                     <Tab.Screen name="Add Entry" component={AddEntryScreen}/>
                     <Tab.Screen name="Profile" component={ProfileScreen}/>
                     </>

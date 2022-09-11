@@ -37,7 +37,7 @@ const LocationScreen = ({ navigation, route }) => {
                 onPress={() => navigation.navigate("Details", {entry: entry})}
                 />
             <Icon name="caret-forward" size={40}/>
-            <Text style={Styles.title}>Location</Text>
+            <Text style={Styles.header2}>Location</Text>
             <Icon name="caret-forward" size={40}/>
             <Button
                 title="Confirm"
@@ -45,7 +45,7 @@ const LocationScreen = ({ navigation, route }) => {
                 />
         </View>
         <ScrollView>
-            <Text style={Styles.header}>Relevant address</Text>
+            <Text style={Styles.header1}>Relevant address</Text>
             <TextInput
                 style={Styles.input}
                 multiline={true}

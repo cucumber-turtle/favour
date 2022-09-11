@@ -21,9 +21,9 @@ const HomeBrowseScreen = () => {
     return (
         <>
             <Text style={Styles.title}> Browse </Text>
-            <Text style={Styles.header}> New! </Text>
+            <Text style={Styles.header1}> New! </Text>
             {scroll1}
-            <Text style={Styles.header}> Nearby </Text>
+            <Text style={Styles.header1}> Nearby </Text>
             {scroll2}
         </>
     );
