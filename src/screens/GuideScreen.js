@@ -13,7 +13,7 @@ const GuideScreen = () => {
             source={require("../../assets/FAVour.png")}
             />
           <Text style={Styles.title}>User guide</Text>
-          <Text style={Styles.body}>FAVour (placeholder name) is an app for finding volunteers and
+          <Text style={Styles.body}>FAVour is an app for finding volunteers and
           finding volunteer work. It is a community app which people can use to help with simple
           tasks around their neighbourhoods or wider communities.</Text>
           <View style={Styles.spaceVertical}/>
