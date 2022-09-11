@@ -16,11 +16,18 @@ const Styles = StyleSheet.create({
   body: {
     fontSize: 12,
   },
+  caption: {
+    color: "white",
+    fontSize: 25,
+    lineHeight: 50,
+    textAlign: "center",
+    backgroundColor: "rgba(0,0,0,0.65)",
+  },
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
   },
   input: {
       borderColor: "gray",
@@ -59,15 +66,21 @@ const Styles = StyleSheet.create({
       shadowColor: "#000",
       shadowOffset: {
         width: 0,
-        height: 2
+        height: 2,
       },
       shadowOpacity: 0.25,
       shadowRadius: 4,
-      elevation: 5
+      elevation: 5,
     },
   submitButton: {
       margin: 10,
-    }
+    },
+  wrappedImage: {
+      width: "100%",
+      height: "100%",
+      resizeMode: "contain",
+      justifyContent: "flex-end",
+    },
 });
 
 export default Styles

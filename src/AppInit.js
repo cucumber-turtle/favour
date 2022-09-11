@@ -10,7 +10,7 @@ function convertToFavour (data) {
     let favour = new FavourEntry("","","","","");
     favour.title = data.Title;
     favour.requirements = data.Requirements;
-    favour.image = data.Image;
+    favour.imagePath = data.Image;
     favour.description = data.Description;
     favour.location = data.Location;
     return favour;

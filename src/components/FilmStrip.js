@@ -1,13 +1,24 @@
 /** Library imports */
 import React, { useState } from 'react';
-import { Pressable, SafeAreaView, ScrollView, View, Text, Modal, Image } from 'react-native';
+import { Pressable, SafeAreaView, ScrollView, View, Text, Modal,
+    ImageBackground, TouchableOpacity } from 'react-native';
 /** Project imports */
 import FavourEntry from './FavourEntry';
 import Styles, {idleColour, activeColour} from './Styles';
 
+/** Image paths loaded before compiling bundle */
+const images = {
+  water: require("../../assets/images/water.jpg"),
+  bird: require("../../assets/images/Hummingbird.jpg")
+}
+
+/** Function to create a filmstrip UI element */
 export default function FilmStrip(allElements) {
+    // State to store modal visibility
     const [modalVisible, setModalVisible] = useState(false);
+    // State to store entry currently displayed on modal
     const [entry, setEntry] = useState(new FavourEntry("","","","",""));
+    // Contents of filmstrip
     const contents = [];
     for (let i = 0; i < allElements.length; i++) {
         let element = allElements[i];
@@ -33,21 +44,19 @@ export default function FilmStrip(allElements) {
                       </View>
                     </View>
                   </Modal>
-            <Pressable
+            <TouchableOpacity
             onPress={() => {
                 setEntry(element);
                 setModalVisible(true);
             }}
-            style={({ pressed }) => [
-                      {
-                        backgroundColor: pressed
-                          ? 'rgb(210, 230, 255)'
-                          : 'white'
-                      },
-                      Styles.wrapperCustom
-                    ]}>
-                    <Image source={{uri: element.image}}/>
-            </Pressable>
+            style={Styles.wrapperCustom}>
+                    <ImageBackground source={
+                        (element.imagePath == "assets/images/water.jpg") ?
+                        images.water : images.bird}
+                        style={Styles.wrappedImage}>
+                        <Text style={Styles.caption}>{element.title}</Text>
+                    </ImageBackground>
+            </TouchableOpacity>
             </View>
         );
         contents.push(reactElement);
